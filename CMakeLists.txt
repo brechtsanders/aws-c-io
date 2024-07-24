@@ -44,10 +44,6 @@ file(GLOB AWS_IO_HEADERS
         "include/aws/io/*.h"
         )
 
-file(GLOB AWS_IO_UV_HEADERS
-        "include/aws/io/uv/*.h"
-        )
-
 file(GLOB AWS_IO_TESTING_HEADERS
         "include/aws/testing/*.h"
         )
@@ -136,7 +132,11 @@ elseif (APPLE)
 
     #No choice on TLS for apple, darwinssl will always be used.
     list(APPEND PLATFORM_LIBS "-framework Security -framework Network")
-    set(EVENT_LOOP_DEFINES "-DAWS_USE_DISPATCH_QUEUE -DAWS_USE_KQUEUE")
+
+    # DEBUG WIP We will add a check here to use dispatch queue for macOS and dispatch queue for iOS
+    # currently we will only define AWS_USE_DISPATCH_QUEUE for testing/developement on macOS
+    # set(EVENT_LOOP_DEFINES "-DAWS_USE_DISPATCH_QUEUE -DAWS_USE_KQUEUE")
+    set(EVENT_LOOP_DEFINES "-DAWS_USE_DISPATCH_QUEUE")
 
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" OR CMAKE_SYSTEM_NAME STREQUAL "NetBSD" OR CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")
