@@ -135,7 +135,6 @@ elseif (APPLE)
 
     # DEBUG WIP We will add a check here to use kqueue queue for macOS and dispatch queue for iOS
     set(EVENT_LOOP_DEFINES "-DAWS_USE_DISPATCH_QUEUE -DAWS_USE_KQUEUE")
-#     set(EVENT_LOOP_DEFINES "-DAWS_USE_DISPATCH_QUEUE")
 
 
 elseif (CMAKE_SYSTEM_NAME STREQUAL "FreeBSD" OR CMAKE_SYSTEM_NAME STREQUAL "NetBSD" OR CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")
